@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @SpringBootApplication
-public class DemoApiApplication {
+public class TodoeyApiApplication {
 	
 	@RequestMapping("/")
     @ResponseBody
@@ -15,6 +15,6 @@ public class DemoApiApplication {
     }
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoApiApplication.class, args);
+		SpringApplication.run(TodoeyApiApplication.class, args);
 	}
 }

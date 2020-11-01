@@ -50,14 +50,14 @@ public class ReminderResource {
 	
 	@PutMapping("/{id}")
 	public ResponseEntity<Reminder> atualizar(@PathVariable Long id, 
-			@Valid @RequestBody Contato contato) {
+			@Valid @RequestBody Reminder reminder) {
 		Reminder existente = reminders.getOne(id);
 		
 		if (existente == null) {
 			return ResponseEntity.notFound().build();
 		}
 		
-		BeanUtils.copyProperties(contato, existente, "id");
+		BeanUtils.copyProperties(reminder, existente, "id");
 		
 		existente = reminders.save(existente);
 		
