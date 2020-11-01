@@ -10,6 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -23,10 +24,12 @@ public class Reminder implements Serializable {
 	@Id
 	@GeneratedValue(generator = "increment")
 	@GenericGenerator(name = "increment", strategy = "increment")
-	private Integer id;
-
+	private Long id;
+	
+	@NotBlank
 	private String title;
 	
+	@NotBlank
 	private String body;
 	
 	@Temporal(TemporalType.DATE)
@@ -36,14 +39,11 @@ public class Reminder implements Serializable {
 	@ManyToOne
 	private User user;
 
-	public Reminder() {
-	}
-
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

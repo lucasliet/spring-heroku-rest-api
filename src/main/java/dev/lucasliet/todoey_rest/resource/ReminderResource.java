@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import dev.lucasliet.todoey_rest.model.Contato;
 import dev.lucasliet.todoey_rest.model.Reminder;
 import dev.lucasliet.todoey_rest.repository.Reminders;
 
@@ -28,44 +27,42 @@ public class ReminderResource {
 	private Reminders reminders;
 	
 	@PostMapping
-	public Reminder adicionar(@Valid @RequestBody Reminder reminder) {
+	public Reminder save(@Valid @RequestBody Reminder reminder) {
 		return reminders.save(reminder);
 	}
 	
 	@GetMapping
-	public List<Reminder> listar() {
+	public List<Reminder> list() {
 		return reminders.findAll();
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Reminder> buscar(@PathVariable Long id) {
+	public ResponseEntity<Reminder> find(@PathVariable Long id) {
 		Reminder reminder = reminders.getOne(id);
 		
-		if (reminder == null) {
-			return ResponseEntity.notFound().build();
-		}
-		
-		return ResponseEntity.ok(reminder);
+		return reminder == null
+				? ResponseEntity.notFound().build()
+				: ResponseEntity.ok(reminder);
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Reminder> atualizar(@PathVariable Long id, 
+	public ResponseEntity<Reminder> update(@PathVariable Long id, 
 			@Valid @RequestBody Reminder reminder) {
-		Reminder existente = reminders.getOne(id);
+		Reminder existent = reminders.getOne(id);
 		
-		if (existente == null) {
+		if (existent == null) {
 			return ResponseEntity.notFound().build();
 		}
 		
-		BeanUtils.copyProperties(reminder, existente, "id");
+		BeanUtils.copyProperties(reminder, existent, "id");
 		
-		existente = reminders.save(existente);
+		existent = reminders.save(existent);
 		
-		return ResponseEntity.ok(existente);
+		return ResponseEntity.ok(existent);
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> remover(@PathVariable Long id) {
+	public ResponseEntity<Void> delete(@PathVariable Long id) {
 		Reminder reminder = reminders.getOne(id);
 		
 		if (reminder == null) {

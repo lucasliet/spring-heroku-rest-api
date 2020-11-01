@@ -1,18 +1,13 @@
 package dev.lucasliet.todoey_rest.model;
 
 import java.io.Serializable;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import com.sun.istack.NotNull;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "users")
@@ -22,35 +17,27 @@ public class User implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	@NotNull
+	private Long id;
+	
+	@NotBlank
 	private String email;
-	@NotNull
+	
+	@NotBlank
 	private String password;
-	@OneToMany	
-	private Set<Reminder> reminders;
 
 	public String getEmail() {
 		return email;
-	}
-
-	public Set<Reminder> getReminders() {
-		return reminders;
-	}
-
-	public void setReminders(Set<Reminder> reminders) {
-		this.reminders = reminders;
 	}
 
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
