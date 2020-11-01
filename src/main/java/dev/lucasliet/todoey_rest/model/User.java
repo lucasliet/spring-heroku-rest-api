@@ -1,16 +1,22 @@
 package dev.lucasliet.todoey_rest.model;
 
 import java.io.Serializable;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import com.sun.istack.NotNull;
 
 @Entity
-public class UserLogin implements Serializable {
+@Table(name = "users")
+public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -21,9 +27,19 @@ public class UserLogin implements Serializable {
 	private String email;
 	@NotNull
 	private String password;
+	@OneToMany	
+	private Set<Reminder> reminders;
 
 	public String getEmail() {
 		return email;
+	}
+
+	public Set<Reminder> getReminders() {
+		return reminders;
+	}
+
+	public void setReminders(Set<Reminder> reminders) {
+		this.reminders = reminders;
 	}
 
 	public void setEmail(String email) {

@@ -6,13 +6,16 @@ import java.util.Calendar;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
+@Table(name = "reminders")
 public class Reminder implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -30,7 +33,7 @@ public class Reminder implements Serializable {
 	private Calendar lastModified = Calendar.getInstance();
 	
 	@ManyToOne
-	private UserLogin user;
+	private User user;
 
 	public Reminder() {
 	}
@@ -59,11 +62,11 @@ public class Reminder implements Serializable {
 		this.lastModified = lastModified;
 	}
 
-	public UserLogin getUser() {
+	public User getUser() {
 		return user;
 	}
 
-	public void setUser(UserLogin user) {
+	public void setUser(User user) {
 		this.user = user;
 	}
 	
