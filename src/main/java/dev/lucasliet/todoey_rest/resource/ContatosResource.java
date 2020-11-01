@@ -1,4 +1,4 @@
-package dev.lucasliet.todoeyrest.resource;
+package dev.lucasliet.todoey_rest.resource;
 
 import java.util.List;
 
@@ -16,42 +16,41 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import dev.lucasliet.todoeyrest.model.Contato;
-import dev.lucasliet.todoeyrest.model.Reminder;
-import dev.lucasliet.todoeyrest.repository.Reminders;
+import dev.lucasliet.todoey_rest.model.Contato;
+import dev.lucasliet.todoey_rest.repository.Contatos;
 
 @RestController
-@RequestMapping("/reminders")
-public class ReminderResource {
+@RequestMapping("/contatos")
+public class ContatosResource {
 	
 	@Autowired
-	private Reminders reminders;
+	private Contatos contatos;
 	
 	@PostMapping
-	public Reminder adicionar(@Valid @RequestBody Reminder reminder) {
-		return reminders.save(reminder);
+	public Contato adicionar(@Valid @RequestBody Contato contato) {
+		return contatos.save(contato);
 	}
 	
 	@GetMapping
-	public List<Reminder> listar() {
-		return reminders.findAll();
+	public List<Contato> listar() {
+		return contatos.findAll();
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Reminder> buscar(@PathVariable Long id) {
-		Reminder reminder = reminders.getOne(id);
+	public ResponseEntity<Contato> buscar(@PathVariable Long id) {
+		Contato contato = contatos.getOne(id);
 		
-		if (reminder == null) {
+		if (contato == null) {
 			return ResponseEntity.notFound().build();
 		}
 		
-		return ResponseEntity.ok(reminder);
+		return ResponseEntity.ok(contato);
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Reminder> atualizar(@PathVariable Long id, 
+	public ResponseEntity<Contato> atualizar(@PathVariable Long id, 
 			@Valid @RequestBody Contato contato) {
-		Reminder existente = reminders.getOne(id);
+		Contato existente = contatos.getOne(id);
 		
 		if (existente == null) {
 			return ResponseEntity.notFound().build();
@@ -59,20 +58,20 @@ public class ReminderResource {
 		
 		BeanUtils.copyProperties(contato, existente, "id");
 		
-		existente = reminders.save(existente);
+		existente = contatos.save(existente);
 		
 		return ResponseEntity.ok(existente);
 	}
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> remover(@PathVariable Long id) {
-		Reminder reminder = reminders.getOne(id);
+		Contato contato = contatos.getOne(id);
 		
-		if (reminder == null) {
+		if (contato == null) {
 			return ResponseEntity.notFound().build();
 		}
 		
-		reminders.delete(reminder);
+		contatos.delete(contato);
 		
 		return ResponseEntity.noContent().build();
 	}

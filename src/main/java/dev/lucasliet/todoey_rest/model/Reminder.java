@@ -1,4 +1,4 @@
-package dev.lucasliet.todoeyrest.model;
+package dev.lucasliet.todoey_rest.model;
 
 import java.io.Serializable;
 import java.util.Calendar;

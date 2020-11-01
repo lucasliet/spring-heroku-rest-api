@@ -1,4 +1,4 @@
-package dev.lucasliet.todoeyrest.model;
+package dev.lucasliet.todoey_rest.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

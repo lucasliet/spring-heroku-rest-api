@@ -1,4 +1,4 @@
-package dev.lucasliet.todoeyrest;
+package dev.lucasliet.todoey_rest;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @SpringBootApplication
-public class TodoeyApiApplication {
+public class DemoApiApplication {
 	
 	@RequestMapping("/")
     @ResponseBody
@@ -15,6 +15,6 @@ public class TodoeyApiApplication {
     }
 
 	public static void main(String[] args) {
-		SpringApplication.run(TodoeyApiApplication.class, args);
+		SpringApplication.run(DemoApiApplication.class, args);
 	}
 }
