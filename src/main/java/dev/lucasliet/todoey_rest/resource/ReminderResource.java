@@ -33,9 +33,12 @@ public class ReminderResource {
 	}
 	
 	@GetMapping
-	public ResponseEntity<List<Reminder>> list(@RequestHeader("user-id") Long userId) {
+	public ResponseEntity<List<Reminder>> list(@RequestHeader(value = "user-id", required = false) Long userId) {
 		if (userId == null) return ResponseEntity.ok(reminders.findAll());
-		return ResponseEntity.ok(reminders.findAllByUserId(userId));
+		
+		List<Reminder> listByUser = reminders.findAllByUserId(userId);
+		
+		return listByUser != null ? ResponseEntity.ok(listByUser) : ResponseEntity.notFound().build();
 	}
 	
 	@GetMapping("/{id}")
