@@ -16,8 +16,8 @@ public class TodoeyApiApplication {
       		+ "		<h1 style=\"margin-bottom:1rem\">Todoey REST API made with Springboot</h1>"
             + "     <h2 style=\"margin-bottom:.5rem\">Routes:</h2>"
       		+ "		<h3 style=\"display:flex; justify-content: space-around; width:50vw;\">"
-      		+ "			<a style=\"color:#333\" href=\"https://todoey-spring.herokuapp.com/users\">Users</a>"
-      		+ "			<a style=\"color:#333\" href=\"https://todoey-spring.herokuapp.com/reminders\">Reminders</a>"
+      		+ "			<a style=\"color:#333\" href=\"https://todoey-rest-spring.herokuapp.com/users\">Users</a>"
+      		+ "			<a style=\"color:#333\" href=\"https://todoey-rest-spring.herokuapp.com/reminders\">Reminders</a>"
       		+ "		</h3>"
       		+ "</main>";
     }

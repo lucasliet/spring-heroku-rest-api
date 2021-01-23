@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,8 +33,9 @@ public class ReminderResource {
 	}
 	
 	@GetMapping
-	public List<Reminder> list() {
-		return reminders.findAll();
+	public ResponseEntity<List<Reminder>> list(@RequestHeader("user-id") Long userId) {
+		if (userId == null) return ResponseEntity.ok(reminders.findAll());
+		return ResponseEntity.ok(reminders.findAllByUserId(userId));
 	}
 	
 	@GetMapping("/{id}")

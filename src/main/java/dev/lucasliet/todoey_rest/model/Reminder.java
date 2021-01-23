@@ -33,7 +33,10 @@ public class Reminder implements Serializable {
 	private String body;
 	
 	@Temporal(TemporalType.DATE)
-	private Calendar lastModified = Calendar.getInstance();
+	private Calendar createdAt = Calendar.getInstance();
+	
+	@Temporal(TemporalType.DATE)
+	private Calendar deadline;
 	
 	@NotNull
 	@ManyToOne
@@ -55,14 +58,6 @@ public class Reminder implements Serializable {
 		this.title = title;
 	}
 
-	public Calendar getLastModified() {
-		return lastModified;
-	}
-
-	public void setLastModified(Calendar lastModified) {
-		this.lastModified = lastModified;
-	}
-
 	public User getUser() {
 		return user;
 	}
@@ -77,6 +72,22 @@ public class Reminder implements Serializable {
 	
 	public String getBody() {
 		return body;
+	}
+
+	public Calendar getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Calendar createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public Calendar getDeadline() {
+		return deadline;
+	}
+
+	public void setDeadline(Calendar deadline) {
+		this.deadline = deadline;
 	}
 
 }

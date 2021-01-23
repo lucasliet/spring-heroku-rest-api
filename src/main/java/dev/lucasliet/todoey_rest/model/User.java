@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "users")
 public class User implements Serializable {
@@ -23,6 +25,7 @@ public class User implements Serializable {
 	private String email;
 	
 	@NotBlank
+	@JsonIgnore
 	private String password;
 
 	public String getEmail() {
