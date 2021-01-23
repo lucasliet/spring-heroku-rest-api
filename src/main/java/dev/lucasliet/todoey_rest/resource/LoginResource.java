@@ -42,10 +42,8 @@ public class LoginResource implements Serializable{
 				.setSubject(user.getEmail())
 				.setIssuedAt(new Date())
 				.setExpiration(new Date(System.currentTimeMillis() + 3000))
-				.signWith(
-						SignatureAlgorithm.HS512, 
-						secret != null ? secret : "vcnxzjgkherwioçgjawefkltçgn34uioqph"
-				).compact();
+				.signWith(SignatureAlgorithm.HS512, secret)
+				.compact();
 		
 		Map<String, Object> response = new HashMap<String, Object>() {{ 
 			put("auth", true);

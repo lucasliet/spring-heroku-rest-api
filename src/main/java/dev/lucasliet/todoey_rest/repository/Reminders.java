@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import dev.lucasliet.todoey_rest.model.Reminder;
 
 public interface Reminders extends JpaRepository<Reminder, Long> {
-	@Query("SELECT * FROM reminders WHERE user_id = ?1")
+	@Query(value = "SELECT * FROM reminders WHERE user_id = ?1", nativeQuery = true)
 	public List<Reminder> findAllByUserId(Long id);
 }
